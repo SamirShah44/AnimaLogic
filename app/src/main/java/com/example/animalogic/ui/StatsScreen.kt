@@ -87,28 +87,3 @@ fun StatsScreen(
 
 }
 
-@Preview(showBackground = true, widthDp = 360, heightDp = 800)
-@Composable
-fun StatsScreenPreview() {
-    var backClicked by remember { mutableStateOf(false) }
-
-    val sampleStats = PlayerStat(
-        completedPuzzleIds = setOf(1, 2, 3, 4, 5, 6),
-        wins = 3,
-        losses = 1,
-        ties = 1
-    )
-
-    AnimaLogicTheme {
-        if (backClicked) {
-            Text("Back button callback works")
-        } else {
-            StatsScreen(
-                playerStat = sampleStats,
-                onBackClick = {
-                    backClicked = true
-                }
-            )
-        }
-    }
-}
