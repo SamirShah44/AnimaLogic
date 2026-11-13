@@ -9,8 +9,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.animalogic.data.Preferences
 import com.example.animalogic.ui.theme.AnimaLogicTheme
 
 class MainActivity : ComponentActivity() {
@@ -30,18 +34,19 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+/*
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    AnimaLogicTheme {
-        Greeting("Android")
+private fun App(prefs: Preferences) {) {
+    var screen by rememberSaveable  { mutableStateOf("main") }
+    when (screen) {
+        "solo" -> PuzzleScreen(prefs) { screen = "main" }
+        "versus" -> VersusScreen(prefs) { screen = "main" }
+        "stats" -> StatsScreen(prefs) { screen = "main" }
+        else -> MainScreen(
+            prefs = prefs,
+            SoloPlay = { screen = "solo" },
+            VersusPlay = { screen = "versus" },
+            Stats = { screen = "stats" }
+        )
     }
-}
+} */
