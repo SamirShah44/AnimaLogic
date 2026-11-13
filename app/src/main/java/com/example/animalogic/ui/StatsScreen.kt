@@ -22,7 +22,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.animalogic.data.PlayerStat
-import com.example.animalogic.data.TOTAL_NUM_OF_PUZZLES
 import com.example.animalogic.ui.theme.AnimaLogicTheme
 
 @Composable
@@ -35,28 +34,16 @@ fun StatsScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ){
-        Text(text="Player Ststistics", fontSize = 28.sp)
+        Text(text="Player Statistics", fontSize = 28.sp)
         Spacer(modifier= Modifier.height(32.dp))
 
 
         Card(modifier = Modifier.fillMaxWidth().padding(vertical = 10.dp))
         {
             Column(modifier=Modifier.padding(20.dp)){
-                Text(text="Casual Puzzles", fontSize = 16.sp)
-                Text(text="${playerStat.puzzlesCompleted} / $TOTAL_NUM_OF_PUZZLES" , fontSize = 20.sp)
+                Text(text="Puzzles Completed", fontSize = 16.sp)
+                Text(text="${playerStat.puzzlesCompleted}" , fontSize = 20.sp)
                 Spacer(modifier= Modifier.height(10.dp))
-
-                LinearProgressIndicator(
-                    progress = {
-                        if(TOTAL_NUM_OF_PUZZLES > 0){
-                            playerStat.puzzlesCompleted.toFloat() / TOTAL_NUM_OF_PUZZLES
-                        }
-                        else{
-                            0f
-                        }
-                    },
-                    modifier = Modifier.fillMaxWidth()
-                )
             }
         }
 
@@ -67,10 +54,10 @@ fun StatsScreen(
                 Text(text="Bluetooth Puzzles", fontSize = 16.sp)
                 Text(text="${playerStat.score} Wins / ${playerStat.matchesPlayed} Played" , fontSize = 20.sp)
                 Spacer(modifier= Modifier.height(10.dp))
-                Text(
-                    text = "Win Rate: ${playerStat.winRate}%",
-                    fontSize = 16.sp
-                )
+                Text("Losses: ${playerStat.losses}")
+                Text("Ties: ${playerStat.ties}")
+                Text("Score: ${playerStat.score}")
+                Text("Win Rate: ${playerStat.winRate}%")
 
             }
         }
