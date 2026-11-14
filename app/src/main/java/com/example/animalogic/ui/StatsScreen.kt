@@ -22,11 +22,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.animalogic.data.PlayerStat
+import com.example.animalogic.data.Preferences
 import com.example.animalogic.ui.theme.AnimaLogicTheme
 
 @Composable
 fun StatsScreen(
-    playerStat: PlayerStat,
+    prefs: Preferences,
     onBackClick: () -> Unit ={}
 ){
     Column(
@@ -37,12 +38,13 @@ fun StatsScreen(
         Text(text="Player Statistics", fontSize = 28.sp)
         Spacer(modifier= Modifier.height(32.dp))
 
+        Text(text = "Coins available: ${prefs.totalCoins}")
 
         Card(modifier = Modifier.fillMaxWidth().padding(vertical = 10.dp))
         {
             Column(modifier=Modifier.padding(20.dp)){
                 Text(text="Puzzles Completed", fontSize = 16.sp)
-                Text(text="${playerStat.puzzlesCompleted}" , fontSize = 20.sp)
+                Text(text="${prefs.completed}" , fontSize = 20.sp)
                 Spacer(modifier= Modifier.height(10.dp))
             }
         }
@@ -52,12 +54,7 @@ fun StatsScreen(
         {
             Column(modifier=Modifier.padding(20.dp)){
                 Text(text="Bluetooth Puzzles", fontSize = 16.sp)
-                Text(text="${playerStat.score} Wins / ${playerStat.matchesPlayed} Played" , fontSize = 20.sp)
-                Spacer(modifier= Modifier.height(10.dp))
-                Text("Losses: ${playerStat.losses}")
-                Text("Ties: ${playerStat.ties}")
-                Text("Score: ${playerStat.score}")
-                Text("Win Rate: ${playerStat.winRate}%")
+                Text(text = "Wins: ${prefs.wins}", fontSize = 24.sp)
 
             }
         }
