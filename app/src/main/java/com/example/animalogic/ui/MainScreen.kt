@@ -17,6 +17,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
+import androidx.compose.ui.platform.LocalContext
+
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 
@@ -30,8 +32,11 @@ import androidx.compose.ui.text.font.FontWeight
 
 import androidx.compose.ui.text.style.TextAlign
 
+import com.example.animalogic.data.Preferences
+
 @Composable
-fun MainScreen(modifier: Modifier = Modifier) {
+fun MainScreen(
+    prefs: Preferences, SoloPlay: () -> Unit, VersusPlay: () -> Unit, Stats: () -> Unit, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -68,13 +73,13 @@ fun MainScreen(modifier: Modifier = Modifier) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Button(onClick = { }, modifier = Modifier.width(220.dp)) {
+            Button(onClick = SoloPlay, modifier = Modifier.width(220.dp)) {
                 Text("Single Player")
             }
-            Button(onClick = { }, modifier = Modifier.width(220.dp)) {
+            Button(onClick = VersusPlay, modifier = Modifier.width(220.dp)) {
                 Text("Multi Player")
             }
-            Button(onClick = { }, modifier = Modifier.width(220.dp)) {
+            Button(onClick = Stats, modifier = Modifier.width(220.dp)) {
                 Text("View Stats")
             }
         }
@@ -87,5 +92,10 @@ fun MainScreen(modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun MainScreenPreview() {
-    MainScreen()
+    MainScreen(
+        prefs = Preferences(LocalContext.current),
+        SoloPlay = {},
+        VersusPlay = {},
+        Stats = {}
+    )
 }
