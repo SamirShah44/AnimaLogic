@@ -18,6 +18,7 @@ import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,10 +32,14 @@ import kotlin.random.Random
 @Composable
 fun PuzzleScreen(prefs: Preferences, onBack: () -> Unit) {
     var seed by rememberSaveable { mutableLongStateOf(Random.nextLong()) }
-    val game = remember(seed) { GameState(PuzzleFactory.generate(seed)) }
-    var hints by remember(seed) { mutableStateOf<Pair<Int, Int>?>(null) }
-    var message by remember(seed) { mutableStateOf("") }
-    var earnedCoins by remember(seed) { mutableStateOf<Int?>(null) }
+    val game = rememberSaveable(seed,
+                                saver = listSaver(
+                                    save = {it.removed}, restore = {GameState(PuzzleFactory.generate(seed), it)}
+                                )
+    ) { GameState(PuzzleFactory.generate(seed)) }
+    var hints by rememberSaveable(seed) { mutableStateOf<Pair<Int, Int>?>(null) }
+    var message by rememberSaveable(seed) { mutableStateOf("") }
+    var earnedCoins by rememberSaveable(seed) { mutableStateOf<Int?>(null) }
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalAlignment = Alignment.CenterHorizontally
