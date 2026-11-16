@@ -7,23 +7,21 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
-import androidx.compose.material3.LinearProgressIndicator
+
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.tooling.preview.Preview
+
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.animalogic.data.PlayerStat
+
 import com.example.animalogic.data.Preferences
-import com.example.animalogic.ui.theme.AnimaLogicTheme
+
 
 @Composable
 fun StatsScreen(
@@ -31,7 +29,7 @@ fun StatsScreen(
     onBackClick: () -> Unit ={}
 ){
     Column(
-        modifier = Modifier.fillMaxSize().padding(24.dp),
+        modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ){
@@ -40,20 +38,21 @@ fun StatsScreen(
 
         Text(text = "Coins available: ${prefs.totalCoins}")
 
+        //Single player mode stats
         Card(modifier = Modifier.fillMaxWidth().padding(vertical = 10.dp))
         {
             Column(modifier=Modifier.padding(20.dp)){
                 Text(text="Puzzles Completed", fontSize = 16.sp)
-                Text(text="${prefs.completed}" , fontSize = 20.sp)
+                Text(text="${prefs.completed}" , fontSize = 24.sp)
                 Spacer(modifier= Modifier.height(10.dp))
             }
         }
 
-        //Bluetooth
+        //Bluetooth competition stats
         Card(modifier = Modifier.fillMaxWidth().padding(vertical = 10.dp))
         {
             Column(modifier=Modifier.padding(20.dp)){
-                Text(text="Bluetooth Puzzles", fontSize = 16.sp)
+                Text(text="Bluetooth Competition", fontSize = 16.sp)
                 Text(text = "Wins: ${prefs.wins}", fontSize = 24.sp)
 
             }
@@ -64,7 +63,7 @@ fun StatsScreen(
             onClick = onBackClick,
             modifier = Modifier.fillMaxWidth()
         ){
-            Text(text = "Back to Main Screen")
+            Text(text = "Main menu")
         }
 
     }
