@@ -4,6 +4,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 
+
+// FR-01, FR-02 were removed from requirements, Random Seed Generator was added instead
+// Difficulty is available to be added later
+
 // entire GameState that the game holds, and is the logic backbone
 class GameState(val rows: List<List<Int>>) {
 

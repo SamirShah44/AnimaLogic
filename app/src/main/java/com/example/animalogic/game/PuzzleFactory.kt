@@ -2,6 +2,10 @@ package com.example.animalogic.game
 
 import kotlin.random.Random
 
+
+// FR-01, FR-02 were removed from requirements, Random Seed Generator was added instead
+// Difficulty is available to be added later
+
 /**
  * Builds AnimaLogic boards that are guaranteed solvable.
  *
