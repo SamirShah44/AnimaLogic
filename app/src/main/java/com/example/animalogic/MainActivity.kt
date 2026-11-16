@@ -45,10 +45,9 @@ private fun App(prefs: Preferences, modifier: Modifier = Modifier) {
         "versus" -> VersusScreen(prefs) { screen = "main" }
         "stats" -> StatsScreen(prefs) { screen = "main" }
         else -> MainScreen(
-            prefs = prefs,
-            SoloPlay = { screen = "solo" },
-            VersusPlay = { screen = "versus" },
-            Stats = { screen = "stats" },
+            soloPlay = { screen = "solo" },
+            versusPlay = { screen = "versus" },
+            stats = { screen = "stats" },
             modifier = modifier
         )
     }
