@@ -45,7 +45,7 @@ fun PuzzleScreen(prefs: Preferences, onBack: () -> Unit) {
         BoardView(game, hints) { r, c ->
             if ( earnedCoins != null) return@BoardView
             hints = null
-            when (val result = game.tryRemove(r, c)) {
+            when (val result = game.tryRemove(r, c)) { // output for tryRemove failing or succeeding
                 is GameState.MoveResult.Invalid -> message = result.reason
                     GameState.MoveResult.Ok -> {
                         message = ""
@@ -63,9 +63,9 @@ fun PuzzleScreen(prefs: Preferences, onBack: () -> Unit) {
             Button(onClick = {
                 val hint = game.hint()
                 when {
-                    prefs.totalCoins < Preferences.HINTCOST ->
+                    prefs.totalCoins < Preferences.HINTCOST -> // checks for proper amount of coins
                         message = "A hint costs ${Preferences.HINTCOST} coins. Solve puzzles to earn more!"
-                    hint == null ->
+                    hint == null -> // checks if there is a hint available
                         message = "No safe move from here. Try Undo."
                     else -> {
                         prefs.spendCoins(Preferences.HINTCOST)   // charged only when a hint is shown, FR-13
