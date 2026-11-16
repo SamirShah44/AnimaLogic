@@ -24,6 +24,8 @@ import androidx.compose.material3.CardDefaults
 
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 
@@ -41,6 +43,7 @@ fun MainScreen(
         modifier = modifier
             .fillMaxSize()
             .background(Color(0xFFF8BBD0))
+            .verticalScroll(rememberScrollState())
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     )  {
