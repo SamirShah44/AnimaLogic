@@ -40,7 +40,7 @@ fun PieceTile(piece: Piece, size: Dp, modifier: Modifier = Modifier, highlighted
     }
 }
 
-// 4x4 board holds the pieces and is clickable, shows colored and empty tiles
+// 4x4 board holds the pieces and is clickable, shows colored and empty tiles, FR-05
 @Composable
 fun BoardView(game: GameState, hintCell: Pair<Int, Int>?, onCellTap: (row: Int, col: Int) -> Unit) {
     Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {

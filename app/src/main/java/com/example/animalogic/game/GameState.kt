@@ -11,7 +11,7 @@ class GameState(val rows: List<List<Int>>) {
     var removed by mutableStateOf(listOf<Int>())
             private set
 
-    // check if puzzle is complete
+    // check if puzzle is complete, FR-07
     val isComplete: Boolean get() = removed.size == 16
 
     // used to check how many removals have happened
@@ -19,7 +19,6 @@ class GameState(val rows: List<List<Int>>) {
 
     // holds where each piece is held at, returns null if the piece is gone
     fun pieceAt(row: Int, col: Int): Piece? = if (col >= pointers()[row]) Piece(rows[row][col]) else null
-
 
     sealed class MoveResult {
         object Ok : MoveResult()
@@ -40,10 +39,12 @@ class GameState(val rows: List<List<Int>>) {
         return MoveResult.Ok
     }
 
+    // FR-04
     fun undo() {
         if (removed.isNotEmpty()) removed = removed.dropLast(1)
     }
 
+    // FR-03
     fun reset() {
         removed = emptyList()
     }

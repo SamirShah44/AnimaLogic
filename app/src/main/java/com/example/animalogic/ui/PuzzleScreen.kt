@@ -49,13 +49,13 @@ fun PuzzleScreen(prefs: Preferences, onBack: () -> Unit) {
                 is GameState.MoveResult.Invalid -> message = result.reason
                     GameState.MoveResult.Ok -> {
                         message = ""
-                        if (game.isComplete) earnedCoins = prefs.completePuzzle()
+                        if (game.isComplete) earnedCoins = prefs.completePuzzle() // checks if puzzle is complete and gives coins
                     }
             }
         }
 
         Text(message, color = Color(0xFFC62828), modifier = Modifier.padding(horizontal = 8.dp))
-        RemovedStrip(game)
+        RemovedStrip(game) // shows removed pieces, FR-09
 
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             OutlinedButton(onClick = { hints = null; message = ""; game.undo() }) { Text("Undo") }
@@ -68,13 +68,14 @@ fun PuzzleScreen(prefs: Preferences, onBack: () -> Unit) {
                     hint == null ->
                         message = "No safe move from here. Try Undo."
                     else -> {
-                        prefs.spendCoins(Preferences.HINTCOST)   // charged only when a hint is shown
+                        prefs.spendCoins(Preferences.HINTCOST)   // charged only when a hint is shown, FR-13
                         hints = hint
                         message = ""
                     }
                 }
             }) { Text("Hint (${Preferences.HINTCOST} coins)") }
 
+            // alerts for solving puzzle
             earnedCoins?.let { coins ->
                 AlertDialog(
                     onDismissRequest = {},

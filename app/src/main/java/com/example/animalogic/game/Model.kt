@@ -2,6 +2,7 @@ package com.example.animalogic.game
 
 import androidx.compose.ui.graphics.Color
 
+// FR-06
 enum class Animal(val label: String) {
     HIPPO("Hippo"),
     GIRAFFE("Giraffe"),
