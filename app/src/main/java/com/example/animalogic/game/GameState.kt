@@ -9,10 +9,10 @@ import androidx.compose.runtime.setValue
 // Difficulty is available to be added later
 
 // entire GameState that the game holds, and is the logic backbone
-class GameState(val rows: List<List<Int>>) {
+class GameState(val rows: List<List<Int>>, saved: List<Int> = emptyList()) {
 
     // removed piece ids in list
-    var removed by mutableStateOf(listOf<Int>())
+    var removed by mutableStateOf(saved)
             private set
 
     // check if puzzle is complete, FR-07
