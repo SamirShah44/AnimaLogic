@@ -36,6 +36,7 @@ fun StatsScreen(
         Text(text="Player Statistics", fontSize = 28.sp)
         Spacer(modifier= Modifier.height(32.dp))
 
+        Text(text = "Player: ${prefs.username}", fontSize = 18.sp)
         Text(text = "Coins available: ${prefs.totalCoins}")
 
         //Single player mode stats
